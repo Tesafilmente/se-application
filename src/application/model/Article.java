@@ -95,9 +95,29 @@ public class Article implements Entity {
 	 * @param name Article price.
 	 * @return self reference.
 	 */
-	public Article setPrice( final String price ) {
-		this.price = price;
-		return this;
+	public Article setPrice(final String price) {
+        String priceTemp = price;
+
+        try {
+            if (priceTemp != null) {
+                // Make negative prices positive
+                String[] priceSplit = priceTemp.split(" ", 2);
+
+                String priceNumberWithoutUnit = priceSplit[0];
+                priceNumberWithoutUnit = priceNumberWithoutUnit.replace(",", ".");
+
+                double priceNumber = Double.parseDouble(priceNumberWithoutUnit);
+
+                if (priceNumber < 0) {
+                    priceTemp = "0,00 " + priceSplit[1];
+                }
+            }
+        } catch (NumberFormatException ex) {
+            // Failed making negative prices positive, because the first part of priceSplit was not numeric
+        }
+
+        this.price = priceTemp;
+        return this;
 	}
 
 }
