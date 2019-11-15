@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import application.model.CustomerTest;
+import application.model.ArticleTest;
 
 
 /**
@@ -16,7 +17,7 @@ import application.model.CustomerTest;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	CustomerTest.class,
+	CustomerTest.class, ArticleTest.class,
 })
 public class TestSuite {
 
